@@ -25,7 +25,8 @@ RUN apt-get install -y \
     python-sqlalchemy \
     sloccount \
     python-nose \
-    python-flaskext.wtf
+    python-flaskext.wtf \
+    dpkg-dev
 
 # dev tools
 RUN apt-get install -y lynx emacs
@@ -34,9 +35,8 @@ RUN apt-get install -y lynx emacs
 
 ### DEBSOURCES
 RUN apt-get install -y git
-RUN cd /opt && git clone git://anonscm.debian.org/qa/debsources.git
+RUN cd /opt && git clone --recursive git://anonscm.debian.org/qa/debsources.git
 ADD config.local.ini /opt/debsources/etc/
-RUN chmod o+r /opt/debsources/etc/config.local.ini
 
 ### POSTGRES
 # needs to run postgres to create a user
@@ -46,15 +46,12 @@ RUN /etc/init.d/postgresql start &&\
     createdb -O docker debsources &&\
     /opt/debsources/bin/dbadmin --createdb postgresql://docker:docker@localhost:5432/debsources
 USER root
-    
-RUN apt-get install -y dpkg-dev
-
 
 # OTHER
 ADD etc /etc
 RUN rm /etc/apache2/sites-enabled/000-default.conf
 
-EXPOSE 5000
+EXPOSE 80
 
 
 # docker run -i -p=5001:5000 -v=/home/matthieu/work/debian/debsources/testdata/mirror:/opt/testdata/mirror -t debsources bash
