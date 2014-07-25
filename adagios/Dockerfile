@@ -14,7 +14,7 @@ RUN echo 'deb http://download.opensuse.org/repositories/home:/ReAzem:/sfl-shinke
 RUN apt-get update && apt-get upgrade -y
 
 # utils
-RUN apt-get install -y python-simplejson coffeescript gettext make python-pip git lynx emacs
+RUN apt-get install -y python-simplejson coffeescript gettext make python-pip python-nose git lynx emacs
 
 # packages
 RUN apt-get install -y supervisor shinken-common shinken-module-graphite shinken-module-livestatus shinken-module-pickle-retention-file-generic shinken-module-simple-log shinken-module-booster-nrpe shinken-module-logstore-sqlite
