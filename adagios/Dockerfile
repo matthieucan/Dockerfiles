@@ -28,7 +28,7 @@ RUN sed -i 's/BoosterNrpe/NrpeBooster/g' /etc/shinken/brokers/broker.cfg
 
 # plugins
 RUN apt-get install -y nagios-plugins
-RUN apt-get install -y check-http2
+RUN apt-get install -y plugin-check-http2
 
 # We need an old version of Django for Adagios
 RUN pip install django\<1.5 python-geoip python-geoip-geolite2
