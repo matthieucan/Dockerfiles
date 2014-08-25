@@ -31,7 +31,7 @@ RUN apt-get install -y nagios-plugins
 RUN apt-get install -y plugin-check-http2
 
 # We need an old version of Django for Adagios
-RUN pip install django\<1.5 python-geoip python-geoip-geolite2
+RUN pip install django\<1.7 python-geoip python-geoip-geolite2
 RUN ln -s /usr/bin/django-admin /usr/bin/django-admin.py
 RUN pip install git+git://github.com/pynag/pynag.git
 
