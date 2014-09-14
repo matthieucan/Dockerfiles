@@ -14,10 +14,12 @@ RUN echo 'deb http://download.opensuse.org/repositories/home:/sfl-monitoring:/mo
 RUN apt-get update && apt-get upgrade -y
 
 # utils
-RUN apt-get install -y python-simplejson coffeescript gettext make python-pip python-nose git lynx emacs
+RUN apt-get install -y python-simplejson coffeescript gettext make python-pip python-nose git lynx emacs nodejs nodejs-legacy npm
 
 # packages
 RUN apt-get install -y supervisor shinken-common shinken-module-graphite shinken-module-livestatus shinken-module-pickle-retention-file-generic shinken-module-simple-log shinken-module-booster-nrpe shinken-module-logstore-sqlite
+
+RUN npm install -g bower
 
 RUN mv /etc/shinken/logstore_sqlite.cfg/logstore_sqlite.cfg /etc/shinken/modules/
 RUN sed -i 's/logstore-sqlite/logsqlite/g' /etc/shinken/modules/logstore_sqlite.cfg
