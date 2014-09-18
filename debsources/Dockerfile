@@ -35,8 +35,8 @@ RUN apt-get install -y lynx emacs
 
 ### DEBSOURCES
 RUN apt-get install -y git
-RUN cd /opt && git clone --recursive git://anonscm.debian.org/qa/debsources.git
-ADD config.local.ini /opt/debsources/etc/
+#RUN cd /opt && git clone --recursive git://anonscm.debian.org/qa/debsources.git
+#ADD config.local.ini /opt/debsources/etc/
 
 ### POSTGRES
 # needs to run postgres to create a user
@@ -44,8 +44,13 @@ USER postgres
 RUN /etc/init.d/postgresql start &&\
     psql --command "CREATE USER docker WITH SUPERUSER PASSWORD 'docker';" &&\
     createdb -O docker debsources &&\
-    /opt/debsources/bin/dbadmin --createdb postgresql://docker:docker@localhost:5432/debsources
+    true
+#    /opt/debsources/bin/dbadmin --createdb postgresql://docker:docker@localhost:5432/debsources
 USER root
+
+###
+RUN apt-get install -y python-setuptools
+###
 
 # OTHER
 ADD etc /etc
