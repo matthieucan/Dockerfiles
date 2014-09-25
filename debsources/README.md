@@ -5,9 +5,9 @@ Build the image:
 docker build -t debsources .
 ```
 
-Run the container:
+Run the container (with the correct path to your Debsources repo):
 ```
-docker run -i -t -v /path/to/debsources:/opt/debsources debsources bash
+docker run -i -t -p 5001:5000 -v /path/to/debsources:/opt/debsources debsources bash
 ```
 
 Make debsources up-to-date in the container:
@@ -18,3 +18,5 @@ bin/debsources-dbadmin --createdb postgresql://docker:docker@localhost:5432/debs
 bin/debsources-update
 bin/debsources-run-app --host 0.0.0.0
 ```
+
+And then navigate in your browser to `http://localhost:5001`.
