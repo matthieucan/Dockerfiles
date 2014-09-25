@@ -19,7 +19,7 @@ RUN apt-get install -y \
     tango-icon-theme \
     debmirror \
     exuberant-ctags \
-    postgresql-9.3 \
+    postgresql-9.4 \
     python-matplotlib \
     python-psycopg2 \
     python-sqlalchemy \
@@ -36,7 +36,10 @@ RUN apt-get install -y lynx emacs
 ### DEBSOURCES
 RUN apt-get install -y git
 #RUN cd /opt && git clone --recursive git://anonscm.debian.org/qa/debsources.git
-#ADD config.local.ini /opt/debsources/etc/
+RUN mkdir /etc/debsources
+ADD config.local.ini /etc/debsources/
+
+ENV PYTHONPATH /opt/debsources
 
 ### POSTGRES
 # needs to run postgres to create a user
