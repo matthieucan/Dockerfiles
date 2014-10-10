@@ -20,3 +20,7 @@ bin/debsources-run-app --host 0.0.0.0
 ```
 
 And then navigate in your browser to `http://localhost:5001`.
+
+Note: about the configuration: in order for this instance to take
+config.local.ini into account, you must be sure you don't have any
+config[.local].ini in your /opt/debsources/etc.
