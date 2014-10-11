@@ -49,6 +49,10 @@ RUN /etc/init.d/postgresql start &&\
     createdb -O docker debsources &&\
     true
 #    /opt/debsources/bin/dbadmin --createdb postgresql://docker:docker@localhost:5432/debsources
+
+# this will permit to run the tests suite:
+createuser --superuser root
+
 USER root
 
 ###
