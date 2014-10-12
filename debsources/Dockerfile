@@ -43,15 +43,14 @@ ENV PYTHONPATH /opt/debsources
 
 ### POSTGRES
 # needs to run postgres to create a user
+# the root superuser is here to permit to run the tests suite
 USER postgres
 RUN /etc/init.d/postgresql start &&\
     psql --command "CREATE USER docker WITH SUPERUSER PASSWORD 'docker';" &&\
     createdb -O docker debsources &&\
+    createuser --superuser root &&\
     true
 #    /opt/debsources/bin/dbadmin --createdb postgresql://docker:docker@localhost:5432/debsources
-
-# this will permit to run the tests suite:
-createuser --superuser root
 
 USER root
 
