@@ -47,8 +47,8 @@ ENV PYTHONPATH /opt/debsources
 USER postgres
 RUN /etc/init.d/postgresql start &&\
     psql --command "CREATE USER docker WITH SUPERUSER PASSWORD 'docker';" &&\
+    psql --command "CREATE USER root WITH SUPERUSER;" &&\
     createdb -O docker debsources &&\
-    createuser --superuser root &&\
     true
 #    /opt/debsources/bin/dbadmin --createdb postgresql://docker:docker@localhost:5432/debsources
 
