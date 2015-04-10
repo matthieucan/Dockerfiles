@@ -25,6 +25,7 @@ RUN apt-get install -y \
     python-sqlalchemy \
     sloccount \
     python-nose \
+    python-nose2-cov \
     python-flaskext.wtf \
     dpkg-dev
 
