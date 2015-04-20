@@ -38,7 +38,7 @@ RUN apt-get install -y lynx emacs
 RUN apt-get install -y git
 #RUN cd /opt && git clone --recursive git://anonscm.debian.org/qa/debsources.git
 RUN mkdir /etc/debsources
-ADD config.local.ini /etc/debsources/
+ADD config.ini /etc/debsources/
 
 ENV PYTHONPATH /opt/debsources
 
